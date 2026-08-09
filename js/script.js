@@ -1,14 +1,126 @@
 /**
  * script.js — Lógica do portfólio
+ * - Canvas: Rede Neural animada (hero background)
  * - Efeito de digitação (typewriter)
  * - Revelação ao rolar (scroll reveal)
  * - Filtro de projetos
  * - Integração com API do GitHub (repositórios)
+ * - Carrossel de tecnologias (pause on hover via CSS)
  *
  * Caminho: js/script.js
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    // ============================================================
+    // 0. CANVAS — REDE NEURAL ANIMADA (Hero Background)
+    // ============================================================
+    const canvas = document.getElementById('neuralCanvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let nodes = [];
+        let animationId;
+        let pulsePhase = 0;
+
+        function resizeCanvas() {
+            const hero = document.getElementById('hero');
+            if (hero) {
+                canvas.width = hero.offsetWidth;
+                canvas.height = hero.offsetHeight;
+            }
+        }
+
+        function createNodes() {
+            nodes = [];
+            const count = Math.floor((canvas.width * canvas.height) / 18000);
+            const numNodes = Math.min(Math.max(count, 25), 70);
+
+            for (let i = 0; i < numNodes; i++) {
+                nodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.25,
+                    vy: (Math.random() - 0.5) * 0.25,
+                    radius: Math.random() * 2.2 + 1.2,
+                    pulseOffset: Math.random() * Math.PI * 2
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            pulsePhase += 0.008;
+
+            const connDist = Math.min(canvas.width, canvas.height) * 0.18;
+
+            // Conexões (arestas da rede)
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < connDist) {
+                        const alpha = (1 - dist / connDist) * 0.22;
+                        ctx.strokeStyle = `rgba(194, 195, 189, ${alpha})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Nós (pontos da rede)
+            for (const node of nodes) {
+                const pulse = Math.sin(pulsePhase + node.pulseOffset) * 0.25 + 0.75;
+                const alpha = 0.4 * pulse;
+                const radius = node.radius * pulse;
+
+                // Brilho externo (glow sutil)
+                const glow = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, radius * 3.5);
+                glow.addColorStop(0, `rgba(194, 195, 189, ${alpha * 0.5})`);
+                glow.addColorStop(1, 'rgba(194, 195, 189, 0)');
+                ctx.fillStyle = glow;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, radius * 3.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Nó central
+                ctx.fillStyle = `rgba(194, 195, 189, ${alpha})`;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Move nós lentamente
+            for (const node of nodes) {
+                node.x += node.vx;
+                node.y += node.vy;
+
+                if (node.x < -20) node.x = canvas.width + 20;
+                if (node.x > canvas.width + 20) node.x = -20;
+                if (node.y < -20) node.y = canvas.height + 20;
+                if (node.y > canvas.height + 20) node.y = -20;
+            }
+
+            animationId = requestAnimationFrame(draw);
+        }
+
+        function initNeuralNet() {
+            resizeCanvas();
+            createNodes();
+            if (animationId) cancelAnimationFrame(animationId);
+            draw();
+        }
+
+        initNeuralNet();
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            createNodes();
+        });
+    }
 
     // ============================================================
     // 1. EFEITO DE DIGITAÇÃO (Typewriter)
@@ -25,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let isDeleting = false;
 
     const typeWriterElement = document.getElementById("typewriter");
-    if (!typeWriterElement) return; // segurança: sai se elemento não existir
 
     function type() {
         if (count === titles.length) {
@@ -58,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, typeSpeed);
     }
 
-    type();
+    if (typeWriterElement) type();
 
     // ============================================================
     // 2. ANIMAÇÃO DE SCROLL (Reveal)
