@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. EFEITO DE DIGITAÇÃO (Typewriter)
     // ============================================================
     const titles = [
-        "Data Scientist",
+        "Data Scientist & Analyst",
         "AI & Deep Learning Researcher",
-        "Biophysics & Data Enthusiast"
+        "Data Enthusiast"
     ];
     let count = 0;
     let index = 0;
@@ -202,4 +202,99 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Ativa a busca automática de repositórios via API do GitHub
     fetchGitHubRepos();
+
+    // ============================================================
+    // 5. SISTEMA DE MODAIS (Projetos em Destaque)
+    // ============================================================
+    const modalTriggers = document.querySelectorAll('.modal-trigger[data-modal]');
+    const modalOverlays = document.querySelectorAll('.modal-overlay');
+    let activeModal = null;
+
+    /**
+     * Abre um modal específico pelo ID.
+     * Fecha qualquer modal já aberto antes de abrir o novo.
+     */
+    function openModal(modalId) {
+        // Fecha modal atual se existir
+        if (activeModal) {
+            closeModal(activeModal);
+        }
+
+        const overlay = document.getElementById(modalId);
+        if (!overlay) return;
+
+        // Bloqueia scroll da página
+        document.body.classList.add('modal-open');
+        // Exibe o overlay
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
+        // Foca o botão de fechar para acessibilidade
+        const closeBtn = overlay.querySelector('.modal-close');
+        if (closeBtn) {
+            setTimeout(() => closeBtn.focus(), 100);
+        }
+
+        activeModal = overlay;
+    }
+
+    /**
+     * Fecha o modal atualmente aberto.
+     * Pode ser chamado com um elemento overlay específico ou sem argumentos.
+     */
+    function closeModal(overlay) {
+        const target = overlay || activeModal;
+        if (!target) return;
+
+        target.classList.remove('active');
+        target.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        activeModal = null;
+
+        // Devolve o foco ao elemento que abriu o modal
+        const trigger = document.querySelector(`[data-modal="${target.id}"]`);
+        if (trigger) {
+            setTimeout(() => trigger.focus(), 100);
+        }
+    }
+
+    // Event listeners: abrir modal ao clicar no card
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const modalId = trigger.getAttribute('data-modal');
+            if (modalId) openModal(modalId);
+        });
+
+        // Suporte a teclado (Enter / Space)
+        trigger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const modalId = trigger.getAttribute('data-modal');
+                if (modalId) openModal(modalId);
+            }
+        });
+    });
+
+    // Event listeners: fechar modal
+    modalOverlays.forEach(overlay => {
+        // Clicar no botão X
+        const closeBtn = overlay.querySelector('.modal-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => closeModal(overlay));
+        }
+
+        // Clicar fora do painel (no overlay)
+        overlay.addEventListener('click', (e) => {
+            // Só fecha se o clique foi diretamente no overlay, não no painel
+            if (e.target === overlay) {
+                closeModal(overlay);
+            }
+        });
+    });
+
+    // Fechar modal pressionando a tecla 'Esc'
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && activeModal) {
+            closeModal(activeModal);
+        }
+    });
 });

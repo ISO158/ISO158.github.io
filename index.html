@@ -78,8 +78,11 @@
     <!-- ============================================================ -->
     <!-- A. HERO — Apresentação + Foto de Perfil                       -->
     <!-- ============================================================ -->
-    <section id="hero" class="min-h-screen flex items-center px-6 md:px-12 pt-24 pb-12">
-        <div class="max-w-6xl w-full mx-auto">
+    <section id="hero" class="min-h-screen flex items-center px-6 md:px-12 pt-24 pb-12 relative overflow-hidden">
+        <!-- Padrão dot-grid (pontilhado) sutil como fundo -->
+        <div class="hero-dot-grid" aria-hidden="true"></div>
+
+        <div class="max-w-6xl w-full mx-auto relative z-10">
             <!-- Layout lado a lado no desktop; empilhado no mobile -->
             <div class="flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
 
@@ -184,6 +187,26 @@
                 <p class="text-txtSecondary leading-relaxed">
                     Meu diferencial competitivo é a capacidade de decompor problemas complexos, traduzi-los em modelos matemáticos e estatísticos rigorosos e implementar soluções escaláveis de alto impacto: seja em software, engenharia de dados ou na integração de hardware e IoT.
                 </p>
+
+                <!-- Bloco pessoal: interesses e habilidades complementares -->
+                <div class="personal-block">
+                    <h4 class="personal-block-title">
+                        <i class="fa-solid fa-mug-hot mr-2"></i> Além do código
+                    </h4>
+                    <div class="personal-tags">
+                        <span class="personal-tag"><i class="fa-solid fa-basketball mr-1"></i> Esportes</span>
+                        <span class="personal-tag"><i class="fa-solid fa-rocket mr-1"></i> Ficção Científica</span>
+                        <span class="personal-tag"><i class="fa-solid fa-gamepad mr-1"></i> Videogames</span>
+                        <span class="personal-tag"><i class="fa-solid fa-file-pdf mr-1"></i> Receitas</span>
+                        <span class="personal-tag"><i class="fa-solid fa-chart-simple mr-1"></i> Livros</span>
+                    </div>
+                    <p class="personal-block-text">
+                        Quando não estou imerso em dados, você me encontra acompanhando os jogos de basquete (NBA), lendo um livro, explorando universos de ficção científica ou mergulhando em um bom RPG, enquanto preparo alguma receita de bolo.
+                        Acredito que a curiosidade que move a ciência é a mesma que torna a cultura
+                        pop e os games tão fascinantes: ambos exigem estratégia, narrativa e
+                        pensamento crítico.
+                    </p>
+                </div>
             </div>
             <!-- Cards -->
             <div class="md:col-span-2 grid grid-cols-1 gap-4">
@@ -192,7 +215,7 @@
                         <i class="fa-solid fa-flask"></i>
                     </div>
                     <h4 class="info-card-title">Academia</h4>
-                    <p class="info-card-text">Mestre em Física (USP) &amp; Menção Honrosa SBBf (2024)</p>
+                    <p class="info-card-text">Graduação e Mestrado em Física (USP)</p>
                 </div>
                 <div class="info-card">
                     <div class="info-card-icon text-accentAlt">
@@ -231,8 +254,9 @@
                     <span class="skill-tag">SQL</span>
                     <span class="skill-tag">R</span>
                     <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">PySparks</span>
                     <span class="skill-tag">NumPy</span>
-                    <span class="skill-tag">OriginPro</span>
                 </div>
             </div>
 
@@ -312,14 +336,10 @@
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="projects-grid">
 
             <!-- Projeto Destaque 1 — IoT -->
-            <div class="project-card" data-category="iot">
+            <div class="project-card modal-trigger" data-category="iot" data-modal="modal-spin-coater" role="button" tabindex="0" aria-label="Abrir detalhes do projeto Spin Coater DIY">
                 <div class="project-card-header">
                     <i class="fa-solid fa-fan text-2xl text-accent"></i>
-                    <div class="flex gap-2">
-                        <a href="#" class="text-txtMuted hover:text-accent transition-colors" aria-label="Link externo">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
+                    <span class="project-card-expand"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span>
                 </div>
                 <h4 class="project-card-title">Spin Coater DIY &amp; Instrumentação</h4>
                 <p class="project-card-desc">
@@ -332,9 +352,10 @@
             </div>
 
             <!-- Projeto Destaque 2 — Data Science -->
-            <div class="project-card" data-category="data">
+            <div class="project-card modal-trigger" data-category="data" data-modal="modal-deep-learning" role="button" tabindex="0" aria-label="Abrir detalhes do projeto Pipelines de Deep Learning">
                 <div class="project-card-header">
                     <i class="fa-solid fa-wave-square text-2xl text-accentAlt"></i>
+                    <span class="project-card-expand"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span>
                 </div>
                 <h4 class="project-card-title">Pipelines de Deep Learning (Física)</h4>
                 <p class="project-card-desc">
@@ -347,9 +368,10 @@
             </div>
 
             <!-- Projeto Destaque 3 — Cloud / IA -->
-            <div class="project-card" data-category="data">
+            <div class="project-card modal-trigger" data-category="data" data-modal="modal-azure-ai" role="button" tabindex="0" aria-label="Abrir detalhes do projeto Agentes IA e Soluções Cloud">
                 <div class="project-card-header">
                     <i class="fa-brands fa-microsoft text-2xl text-accentAlt"></i>
+                    <span class="project-card-expand"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span>
                 </div>
                 <h4 class="project-card-title">Agentes IA e Soluções Cloud</h4>
                 <p class="project-card-desc">
@@ -364,6 +386,142 @@
             <!-- Os repositórios do GitHub são injetados aqui pelo script.js -->
         </div>
     </section>
+
+    <!-- ============================================================ -->
+    <!-- MODAIS DE PROJETOS (estrutura oculta, exibida via JS)         -->
+    <!-- ============================================================ -->
+
+    <!-- Modal 1: Spin Coater DIY -->
+    <div class="modal-overlay" id="modal-spin-coater" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-panel">
+            <button class="modal-close" aria-label="Fechar modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-body">
+                <!-- Imagem do projeto — substitua pelo caminho real -->
+                <!-- Sugestão: assets/img/projects/spin-coater.jpg -->
+                <div class="modal-image">
+                    <img src="assets/img/projects/spin-coater.jpg"
+                         alt="Spin Coater DIY — hardware de precisão para laboratório"
+                         loading="lazy"
+                         onerror="this.parentElement.style.display='none';">
+                </div>
+                <span class="modal-category">IoT &amp; Hardware</span>
+                <h3 class="modal-title">Spin Coater DIY &amp; Instrumentação de Precisão</h3>
+                <div class="modal-tags">
+                    <span>ESP32</span> <span>C++</span> <span>Modelagem 3D</span> <span>Impressão 3D</span>
+                </div>
+                <div class="modal-text">
+                    <p>
+                        Projeto completo de engenharia e instrumentação científica: desenvolvi do zero um
+                        <em>spin coater</em> (dispositivo para deposição de filmes finos) voltado para
+                        experimentos de biofísica em laboratório.
+                    </p>
+                    <p>
+                        A solução integra <strong>hardware customizado</strong> (modelagem e impressão 3D do
+                        chassi e suportes), <strong>firmware em C++</strong> para ESP32 controlando
+                        velocidade de rotação com precisão, e <strong>software de aquisição</strong>
+                        para monitoramento em tempo real.
+                    </p>
+                    <p>
+                        A visualização e análise dos dados de calibração foi conduzida com
+                        <strong>OriginPro</strong>, permitindo ajustes finos de parâmetros
+                        e garantindo reprodutibilidade experimental. O projeto evidencia minha
+                        capacidade de unir física experimental, engenharia de hardware e ciência de dados.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Pipelines de Deep Learning -->
+    <div class="modal-overlay" id="modal-deep-learning" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-panel">
+            <button class="modal-close" aria-label="Fechar modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-body">
+                <!-- Imagem do projeto -->
+                <!-- Sugestão: assets/img/projects/deep-learning-pipelines.jpg -->
+                <div class="modal-image">
+                    <img src="assets/img/projects/deep-learning-pipelines.jpg"
+                         alt="Pipelines de Deep Learning aplicados à Física"
+                         loading="lazy"
+                         onerror="this.parentElement.style.display='none';">
+                </div>
+                <span class="modal-category">Data Science &amp; IA</span>
+                <h3 class="modal-title">Pipelines de Deep Learning para Dados de Biofísica</h3>
+                <div class="modal-tags">
+                    <span>Python</span> <span>PyTorch</span> <span>SciPy</span> <span>OriginPro</span> <span>LaTeX</span>
+                </div>
+                <div class="modal-text">
+                    <p>
+                        Desenvolvi pipelines completos de processamento de sinais espectroscópicos
+                        utilizando <strong>redes neurais profundas (PyTorch)</strong> para automatizar
+                        a deconvolução de picos sobrepostos — um problema clássico e desafiador
+                        em experimentos de fluorescência e dinâmica de membranas lipídicas.
+                    </p>
+                    <p>
+                        O fluxo inclui: pré-processamento estatístico dos espectros com
+                        <strong>SciPy/NumPy</strong>, normalização robusta, treinamento de modelos
+                        probabilísticos para estimar parâmetros físicos (largura de banda, centroide,
+                        intensidade relativa), e validação cruzada contra <em>ground truth</em>
+                        experimental.
+                    </p>
+                    <p>
+                        Toda a documentação matemática e os resultados foram compilados em
+                        <strong>LaTeX</strong> para publicação, e as visualizações analíticas
+                        foram geradas com <strong>OriginPro</strong>, garantindo comunicação
+                        científica de alto nível.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Agentes IA e Soluções Cloud -->
+    <div class="modal-overlay" id="modal-azure-ai" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-panel">
+            <button class="modal-close" aria-label="Fechar modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-body">
+                <!-- Imagem do projeto -->
+                <!-- Sugestão: assets/img/projects/azure-ai-agents.jpg -->
+                <div class="modal-image">
+                    <img src="assets/img/projects/azure-ai-agents.jpg"
+                         alt="Arquitetura de Agentes IA na Microsoft Azure"
+                         loading="lazy"
+                         onerror="this.parentElement.style.display='none';">
+                </div>
+                <span class="modal-category">Cloud &amp; Inteligência Artificial</span>
+                <h3 class="modal-title">Agentes IA Autônomos e Soluções Cloud na Azure</h3>
+                <div class="modal-tags">
+                    <span>Azure AI</span> <span>LLMs</span> <span>Python</span> <span>OCR</span> <span>RAG</span>
+                </div>
+                <div class="modal-text">
+                    <p>
+                        Arquitetura e implementação de <strong>agentes autônomos de IA</strong>
+                        sobre a plataforma <strong>Microsoft Azure (AI Foundry)</strong>,
+                        combinando Large Language Models, busca vetorial semântica (RAG)
+                        e serviços cognitivos de OCR para processamento inteligente de documentos.
+                    </p>
+                    <p>
+                        Os agentes foram projetados para executar tarefas complexas em pipeline:
+                        ingestão de documentos não estruturados, extração de entidades,
+                        classificação contextual e geração de respostas fundamentadas em
+                        bases de conhecimento proprietárias — tudo orquestrado em Python
+                        com APIs nativas da Azure.
+                    </p>
+                    <p>
+                        Este projeto demonstra minha capacidade de integrar tecnologias de
+                        ponta em IA generativa com infraestrutura Cloud empresarial,
+                        entregando soluções escaláveis e prontas para produção.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ============================================================ -->
     <!-- E. TRAJETÓRIA & EXPERIÊNCIA                                    -->
@@ -448,7 +606,7 @@
             Se você busca alguém com forte raciocínio lógico, experiência em IA e paixão por resolver
             problemas, minha caixa de entrada está aberta.
         </p>
-        <a href="mailto:igor.oliveira158@usp.br" class="btn-outline-lg">
+        <a href="mailto:igor.oliveira158@hotmail.com" class="btn-outline-lg">
             <i class="fa-solid fa-paper-plane mr-2"></i> Diga Olá
         </a>
     </section>
@@ -466,7 +624,7 @@
                class="text-txtMuted hover:text-accent transition-colors" aria-label="LinkedIn">
                 <i class="fa-brands fa-linkedin text-xl"></i>
             </a>
-            <a href="mailto:igor.oliveira158@usp.br"
+            <a href="mailto:igor.oliveira158@hotmail.com"
                class="text-txtMuted hover:text-txtPrimary transition-colors" aria-label="E-mail">
                 <i class="fa-solid fa-envelope text-xl"></i>
             </a>
