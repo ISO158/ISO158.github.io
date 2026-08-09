@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Igor da Silva Oliveira | Data Scientist & AI Researcher</title>
+
+    <!-- Favicon -->
+    <!-- Substitua pelo seu favicon em assets/img/favicon.ico -->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <!-- Fontes: Inter (corpo) + Fira Code (mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Ícones (FontAwesome 6) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (CDN) — Configuração de paleta refinada -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        /* Fundo profundo — slate/navy escuro */
+                        dark:       '#0a0f1c',
+                        darkAlt:    '#111827',
+                        surface:    '#151d2e',
+                        surfaceAlt: '#1a2332',
+                        /* Texto */
+                        txtPrimary: '#e2e8f0',
+                        txtSecondary:'#94a3b8',
+                        txtMuted:   '#64748b',
+                        /* Acento principal: azul aço corporativo (substitui ciano neon) */
+                        accent:     '#4b7bec',
+                        accentHover:'#3867d6',
+                        /* Acento alternativo: verde esmeralda sóbrio (substitui roxo) */
+                        accentAlt:  '#20bf6b',
+                        accentAltHover:'#1aa35a',
+                        /* Bordas sutis */
+                        borderSubtle: '#1e293b',
+                        borderMedium:'#334155',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Estilos Customizados -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-dark text-txtSecondary font-sans antialiased overflow-x-hidden selection:bg-accent selection:text-white">
+
+    <!-- ============================================================ -->
+    <!-- NAVEGAÇÃO                                                     -->
+    <!-- ============================================================ -->
+    <nav class="fixed w-full z-50 bg-dark/85 backdrop-blur-md border-b border-borderSubtle py-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-txtPrimary tracking-tighter">
+                ISO<span class="text-accent">.</span>
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#sobre"        class="nav-link">Sobre</a>
+                <a href="#skills"       class="nav-link">Competências</a>
+                <a href="#projetos"     class="nav-link">Projetos</a>
+                <a href="#experiencia"  class="nav-link">Trajetória</a>
+                <a href="#contato"      class="nav-link">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- A. HERO — Apresentação + Foto de Perfil                       -->
+    <!-- ============================================================ -->
+    <section id="hero" class="min-h-screen flex items-center px-6 md:px-12 pt-24 pb-12">
+        <div class="max-w-6xl w-full mx-auto">
+            <!-- Layout lado a lado no desktop; empilhado no mobile -->
+            <div class="flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
+
+                <!-- COLUNA DA FOTO (mobile: centralizada e acima) -->
+                <!-- 
+                     INSTRUÇÕES PARA A FOTO:
+                     1. Coloque sua foto profissional em: assets/img/profile.jpg
+                     2. Formatos aceitos: .jpg ou .png
+                     3. Resolução recomendada: 400×400 px ou superior
+                     4. Se usar .png, altere o src abaixo para assets/img/profile.png
+                -->
+                <div class="flex-shrink-0 flex justify-center md:justify-start">
+                    <div class="profile-frame">
+                        <img
+                            src="assets/img/profile.jpg"
+                            alt="Foto de Igor da Silva Oliveira"
+                            class="profile-img"
+                            loading="eager"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('profile-placeholder');"
+                        >
+                        <!-- Fallback caso a imagem não exista ainda -->
+                        <div class="profile-placeholder-content">
+                            <i class="fa-solid fa-user text-5xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLUNA DO TEXTO -->
+                <div class="flex-1 text-center md:text-left">
+                    <p class="text-accent font-mono text-sm tracking-widest mb-3 uppercase">Olá, eu sou</p>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-txtPrimary mb-3 tracking-tight leading-tight">
+                        Igor da Silva Oliveira<span class="text-accent">.</span>
+                    </h1>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-txtMuted mb-4 flex items-center justify-center md:justify-start h-10">
+                        <span id="typewriter"></span><span class="animate-pulse text-accent">|</span>
+                    </h2>
+                    <p class="text-base sm:text-lg text-txtSecondary max-w-xl mb-6 leading-relaxed mx-auto md:mx-0">
+                        Movido pelo desafio de resolver problemas complexos e descobrir padrões ocultos
+                        em grandes volumes de dados. Uno uma base rigorosa em matemática, estatística e
+                        física ao desenvolvimento de soluções em IA e Data Science para gerar valor real.
+                    </p>
+
+                    <!-- Badges Acadêmicos / Marcos de Carreira -->
+                    <div class="flex flex-wrap gap-2 justify-center md:justify-start mb-6">
+                        <span class="badge badge-usp">
+                            <i class="fa-solid fa-building-columns mr-1.5"></i> USP
+                        </span>
+                        <span class="badge badge-fapesp">
+                            <i class="fa-solid fa-microscope mr-1.5"></i> FAPESP
+                        </span>
+                        <span class="badge badge-sbbf">
+                            <i class="fa-solid fa-award mr-1.5"></i> Menção Honrosa SBBf 2024
+                        </span>
+                        <span class="badge badge-pub">
+                            <i class="fa-solid fa-book-open mr-1.5"></i> Publicação Internacional
+                        </span>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                        <a href="#projetos" class="btn-primary">
+                            <i class="fa-solid fa-code"></i> Ver Projetos
+                        </a>
+                        <a href="assets/docs/curriculo_tex.pdf" target="_blank" class="btn-outline">
+                            <i class="fa-solid fa-download"></i> Download CV
+                        </a>
+                        <a href="https://github.com/ISO158" target="_blank"
+                           class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-txtMuted hover:text-txtPrimary hover:bg-surfaceAlt transition-colors"
+                           aria-label="GitHub">
+                            <i class="fa-brands fa-github text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/igor-oliveira158/" target="_blank"
+                           class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-txtMuted hover:text-accent hover:bg-surfaceAlt transition-colors"
+                           aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- B. SOBRE MIM                                                   -->
+    <!-- ============================================================ -->
+    <section id="sobre" class="py-20 md:py-28 px-6 md:px-12 max-w-6xl mx-auto reveal">
+        <h3 class="section-heading">
+            <span class="section-number">01.</span> Sobre Mim
+        </h3>
+        <div class="grid md:grid-cols-5 gap-10 md:gap-14 items-start">
+            <!-- Texto -->
+            <div class="md:col-span-3 space-y-4">
+                <p class="text-txtSecondary leading-relaxed">
+                    Minha jornada começou na Física, no prestigiado Instituto de Física da USP,
+                    onde desenvolvi um forte pensamento analítico, habilidades de instrumentação e
+                    rigor estatístico. Durante o mestrado, percebi o poder dos dados e da computação aplicada.
+                </p>
+                <p class="text-txtSecondary leading-relaxed">
+                    Hoje, atuo na interseção entre a ciência e a tecnologia, construindo pipelines de dados
+                    (Python, SQL, R), treinando modelos de Deep Learning (PyTorch) e integrando
+                    Agentes de IA com a nuvem (Microsoft Azure).
+                </p>
+                <p class="text-txtSecondary leading-relaxed">
+                    Meu diferencial é a capacidade de entender a física por trás do problema, traduzi-la
+                    matematicamente e implementar uma solução escalável, seja em software ou integrando hardware (IoT).
+                </p>
+            </div>
+            <!-- Cards -->
+            <div class="md:col-span-2 grid grid-cols-1 gap-4">
+                <div class="info-card">
+                    <div class="info-card-icon text-accent">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+                    <h4 class="info-card-title">Academia</h4>
+                    <p class="info-card-text">Mestre em Física (USP) &amp; Menção Honrosa SBBf (2024)</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon text-accentAlt">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h4 class="info-card-title">IA Aplicada</h4>
+                    <p class="info-card-text">Deep Learning, LLMs &amp; Soluções Azure Cloud</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon text-accentAlt">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h4 class="info-card-title">IoT &amp; Hardware</h4>
+                    <p class="info-card-text">Instrumentação de precisão (ESP32, C++, Impressão 3D)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- C. COMPETÊNCIAS (Tech Stack)                                   -->
+    <!-- ============================================================ -->
+    <section id="skills" class="py-20 md:py-28 px-6 md:px-12 max-w-6xl mx-auto reveal">
+        <h3 class="section-heading">
+            <span class="section-number">02.</span> Tech Stack
+        </h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <!-- Card: Ciência de Dados -->
+            <div class="skill-card accent-blue">
+                <h4 class="skill-card-title">
+                    <i class="fa-solid fa-chart-pie mr-2"></i> Ciência de Dados
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">OriginPro</span>
+                </div>
+            </div>
+
+            <!-- Card: IA & Deep Learning -->
+            <div class="skill-card accent-green">
+                <h4 class="skill-card-title">
+                    <i class="fa-solid fa-robot mr-2"></i> IA &amp; Deep Learning
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">LLMs</span>
+                    <span class="skill-tag">Azure AI</span>
+                    <span class="skill-tag">Computer Vision</span>
+                    <span class="skill-tag">AI Agents</span>
+                </div>
+            </div>
+
+            <!-- Card: IoT & Hardware -->
+            <div class="skill-card accent-green">
+                <h4 class="skill-card-title">
+                    <i class="fa-solid fa-microchip mr-2"></i> IoT &amp; Hardware
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">ESP32 / Arduino</span>
+                    <span class="skill-tag">Impressão 3D</span>
+                    <span class="skill-tag">Instrumentação</span>
+                </div>
+            </div>
+
+            <!-- Card: Business Intelligence -->
+            <div class="skill-card accent-amber">
+                <h4 class="skill-card-title">
+                    <i class="fa-solid fa-chart-line mr-2"></i> Business Intelligence
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Excel Avançado</span>
+                    <span class="skill-tag">Modelagem Estatística</span>
+                    <span class="skill-tag">Data Storytelling</span>
+                </div>
+            </div>
+
+            <!-- Card: Metodologias & Gestão -->
+            <div class="skill-card accent-rose">
+                <h4 class="skill-card-title">
+                    <i class="fa-solid fa-users-gear mr-2"></i> Metodologias &amp; Gestão
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">Scrum / Agile</span>
+                    <span class="skill-tag">Design Thinking</span>
+                    <span class="skill-tag">Git / GitHub</span>
+                    <span class="skill-tag">LaTeX</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- D. PROJETOS                                                    -->
+    <!-- ============================================================ -->
+    <section id="projetos" class="py-20 md:py-28 px-6 md:px-12 max-w-7xl mx-auto reveal">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-end mb-10 gap-5">
+            <h3 class="section-heading !mb-0">
+                <span class="section-number">03.</span> Projetos &amp; Desenvolvimentos
+            </h3>
+            <!-- Filtros -->
+            <div class="flex gap-2 overflow-x-auto pb-1" id="project-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="data">Data Science &amp; IA</button>
+                <button class="filter-btn" data-filter="iot">IoT &amp; Hardware</button>
+            </div>
+        </div>
+
+        <!-- Grade de Projetos (Destaques manuais + injeção GitHub via JS) -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="projects-grid">
+
+            <!-- Projeto Destaque 1 — IoT -->
+            <div class="project-card" data-category="iot">
+                <div class="project-card-header">
+                    <i class="fa-solid fa-fan text-2xl text-accent"></i>
+                    <div class="flex gap-2">
+                        <a href="#" class="text-txtMuted hover:text-accent transition-colors" aria-label="Link externo">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+                <h4 class="project-card-title">Spin Coater DIY &amp; Instrumentação</h4>
+                <p class="project-card-desc">
+                    Desenvolvimento, modelagem 3D, programação em C++ (ESP32) e construção de hardware
+                    de precisão para laboratório de biofísica.
+                </p>
+                <div class="project-card-tags text-accent">
+                    <span>ESP32</span> <span>C++</span> <span>3D Print</span>
+                </div>
+            </div>
+
+            <!-- Projeto Destaque 2 — Data Science -->
+            <div class="project-card" data-category="data">
+                <div class="project-card-header">
+                    <i class="fa-solid fa-wave-square text-2xl text-accentAlt"></i>
+                </div>
+                <h4 class="project-card-title">Pipelines de Deep Learning (Física)</h4>
+                <p class="project-card-desc">
+                    Modelos probabilísticos, processamento de sinais/espectroscopia e automação
+                    de deconvolution de picos.
+                </p>
+                <div class="project-card-tags text-accentAlt">
+                    <span>Python</span> <span>PyTorch</span> <span>SciPy</span>
+                </div>
+            </div>
+
+            <!-- Projeto Destaque 3 — Cloud / IA -->
+            <div class="project-card" data-category="data">
+                <div class="project-card-header">
+                    <i class="fa-brands fa-microsoft text-2xl text-accentAlt"></i>
+                </div>
+                <h4 class="project-card-title">Agentes IA e Soluções Cloud</h4>
+                <p class="project-card-desc">
+                    Projetos integrando serviços cognitivos, OCR, busca vetorial e agentes autônomos
+                    na Microsoft Azure.
+                </p>
+                <div class="project-card-tags text-accentAlt">
+                    <span>Azure AI</span> <span>LLMs</span> <span>Python</span>
+                </div>
+            </div>
+
+            <!-- Os repositórios do GitHub são injetados aqui pelo script.js -->
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- E. TRAJETÓRIA & EXPERIÊNCIA                                    -->
+    <!-- ============================================================ -->
+    <section id="experiencia" class="py-20 md:py-28 px-6 md:px-12 max-w-4xl mx-auto reveal">
+        <h3 class="section-heading">
+            <span class="section-number">04.</span> Trajetória &amp; Experiência
+        </h3>
+
+        <!-- Timeline -->
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-dot accent"></div>
+                <span class="timeline-date accent">2024 – 2026</span>
+                <h4 class="timeline-title">Pesquisador Bolsista de Mestrado</h4>
+                <p class="timeline-institution">FAPESP / IFUSP</p>
+                <p class="timeline-text">
+                    Modelagem de dados complexos, publicação internacional, e prêmio de melhor painel
+                    SBBf 2024. Integração de análise estatística em problemas de biofísica.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">2023</span>
+                <h4 class="timeline-title">Monitor de Apoio ao Docente</h4>
+                <p class="timeline-institution">USP</p>
+                <p class="timeline-text">
+                    Disciplina de Introdução às Medidas em Física. Orientação focada em estatística
+                    de incertezas e tratamento de dados laboratoriais.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">2022 – 2023</span>
+                <h4 class="timeline-title">Pesquisador Bolsista PIBIC</h4>
+                <p class="timeline-institution">CNPq / USP</p>
+                <p class="timeline-text">
+                    Análise autônoma de dados experimentais, exigindo proatividade e flexibilidade
+                    diante de cenários complexos.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">2019 – 2023</span>
+                <h4 class="timeline-title">Licenciatura em Física</h4>
+                <p class="timeline-institution">USP</p>
+                <p class="timeline-text">
+                    Forte base analítica complementada com projetos de extensão e divulgação científica.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Certificações -->
+        <div class="cert-card mt-12">
+            <h4 class="cert-card-title">
+                <i class="fa-solid fa-certificate text-accentAlt mr-2"></i> Certificações em Destaque
+            </h4>
+            <ul class="cert-list">
+                <li>Aspire Leaders Program</li>
+                <li>AI &amp; PLN (O.P. Jindal Global University)</li>
+                <li>Neural Networks (IFUSP)</li>
+                <li>Introdução ao Big Data (FIA)</li>
+                <li>Agile &amp; Design Thinking (Univ. of Virginia)</li>
+                <li>Azure AI &amp; Fundamentos de Deep Learning</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- F. CONTATO                                                     -->
+    <!-- ============================================================ -->
+    <section id="contato" class="py-20 md:py-28 px-6 md:px-12 text-center max-w-2xl mx-auto reveal">
+        <p class="text-accent font-mono text-sm tracking-widest mb-3 uppercase">05. Qual é o próximo passo?</p>
+        <h3 class="text-3xl sm:text-4xl md:text-5xl font-bold text-txtPrimary mb-5">Vamos Conversar</h3>
+        <p class="text-txtSecondary mb-10 leading-relaxed">
+            Estou em transição para desafios no setor corporativo como Cientista de Dados ou Analista.
+            Se você busca alguém com forte raciocínio lógico, experiência em IA e paixão por resolver
+            problemas, minha caixa de entrada está aberta.
+        </p>
+        <a href="mailto:igor.oliveira158@usp.br" class="btn-outline-lg">
+            <i class="fa-solid fa-paper-plane mr-2"></i> Diga Olá
+        </a>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- RODAPÉ                                                        -->
+    <!-- ============================================================ -->
+    <footer class="py-10 text-center border-t border-borderSubtle">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="https://github.com/ISO158" target="_blank"
+               class="text-txtMuted hover:text-txtPrimary transition-colors" aria-label="GitHub">
+                <i class="fa-brands fa-github text-xl"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/igor-oliveira158/" target="_blank"
+               class="text-txtMuted hover:text-accent transition-colors" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin text-xl"></i>
+            </a>
+            <a href="mailto:igor.oliveira158@usp.br"
+               class="text-txtMuted hover:text-txtPrimary transition-colors" aria-label="E-mail">
+                <i class="fa-solid fa-envelope text-xl"></i>
+            </a>
+        </div>
+        <p class="text-txtMuted font-mono text-xs">
+            Projetado e Desenvolvido por Igor da Silva Oliveira<br>
+            Hospedado no <i class="fa-brands fa-github"></i> GitHub Pages
+        </p>
+    </footer>
+
+    <!-- Script Principal -->
+    <script src="js/script.js"></script>
+</body>
+</html>

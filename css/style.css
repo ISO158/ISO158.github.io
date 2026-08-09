@@ -1,0 +1,583 @@
+/* ============================================================
+   style.css — Estilos customizados do portfólio
+   Design: Minimalismo refinado, paleta slate/navy corporativa,
+           tipografia limpa, microinterações elegantes.
+   ============================================================ */
+
+/* -------------------------------------------------------
+   1. ESTILOS GLOBAIS & UTILITÁRIOS
+   ------------------------------------------------------- */
+
+/* Scroll suave já ativado via classe no <html> */
+
+/* Seleção de texto */
+::selection {
+    background-color: #4b7bec;
+    color: #ffffff;
+}
+
+/* -------------------------------------------------------
+   2. NAVEGAÇÃO
+   ------------------------------------------------------- */
+
+.nav-link {
+    color: #94a3b8;
+    transition: color 0.2s ease;
+    position: relative;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: #4b7bec;
+    transition: width 0.25s ease;
+}
+.nav-link:hover {
+    color: #e2e8f0;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* -------------------------------------------------------
+   3. FOTO DE PERFIL (Hero Section)
+   ------------------------------------------------------- */
+
+.profile-frame {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    /* Moldura circular com borda sutil */
+    border: 3px solid #1e293b;
+    /* Sombra de profundidade real (elevação suave) */
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.3),
+        0 10px 30px -10px rgba(0, 0, 0, 0.4),
+        0 0 0 6px rgba(75, 123, 236, 0.08);
+    overflow: hidden;
+    background-color: #151d2e;
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    flex-shrink: 0;
+}
+.profile-frame:hover {
+    border-color: #334155;
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.3),
+        0 12px 36px -8px rgba(75, 123, 236, 0.15),
+        0 0 0 8px rgba(75, 123, 236, 0.06);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Placeholder exibido quando o <img> falha (ex: arquivo ainda não existe) */
+.profile-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile-placeholder-content {
+    display: none;
+}
+.profile-placeholder .profile-placeholder-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #64748b;
+}
+/* Esconde o ícone de placeholder por padrão — só aparece se img quebrar */
+.profile-frame:not(.profile-placeholder) .profile-placeholder-content {
+    display: none;
+}
+
+/* Ajuste responsivo da foto */
+@media (max-width: 767px) {
+    .profile-frame {
+        width: 160px;
+        height: 160px;
+        margin: 0 auto;
+    }
+}
+@media (min-width: 768px) {
+    .profile-frame {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+/* -------------------------------------------------------
+   4. BADGES (SELOS) ACADÊMICOS E PROFISSIONAIS
+   ------------------------------------------------------- */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.02em;
+    border-radius: 9999px;
+    border: 1px solid;
+    white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.badge:hover {
+    transform: translateY(-1px);
+}
+
+/* USP */
+.badge-usp {
+    background-color: rgba(75, 123, 236, 0.08);
+    color: #93b4f5;
+    border-color: rgba(75, 123, 236, 0.2);
+}
+.badge-usp:hover {
+    box-shadow: 0 2px 12px rgba(75, 123, 236, 0.12);
+}
+
+/* FAPESP */
+.badge-fapesp {
+    background-color: rgba(32, 191, 107, 0.07);
+    color: #6ee7b7;
+    border-color: rgba(32, 191, 107, 0.2);
+}
+.badge-fapesp:hover {
+    box-shadow: 0 2px 12px rgba(32, 191, 107, 0.1);
+}
+
+/* SBBf Menção Honrosa */
+.badge-sbbf {
+    background-color: rgba(250, 176, 5, 0.07);
+    color: #fcc419;
+    border-color: rgba(250, 176, 5, 0.2);
+}
+.badge-sbbf:hover {
+    box-shadow: 0 2px 12px rgba(250, 176, 5, 0.1);
+}
+
+/* Publicação Internacional */
+.badge-pub {
+    background-color: rgba(148, 163, 184, 0.06);
+    color: #cbd5e1;
+    border-color: rgba(148, 163, 184, 0.15);
+}
+.badge-pub:hover {
+    box-shadow: 0 2px 12px rgba(148, 163, 184, 0.08);
+}
+
+/* -------------------------------------------------------
+   5. BOTÕES
+   ------------------------------------------------------- */
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.5rem;
+    background-color: #4b7bec;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    border: 2px solid #4b7bec;
+    transition: background-color 0.25s ease, border-color 0.25s ease,
+                transform 0.2s ease, box-shadow 0.25s ease;
+}
+.btn-primary:hover {
+    background-color: #3867d6;
+    border-color: #3867d6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(75, 123, 236, 0.25);
+}
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.5rem;
+    background-color: transparent;
+    color: #4b7bec;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    border: 2px solid #1e293b;
+    transition: border-color 0.25s ease, color 0.25s ease,
+                background-color 0.25s ease, transform 0.2s ease;
+}
+.btn-outline:hover {
+    border-color: #4b7bec;
+    color: #e2e8f0;
+    background-color: rgba(75, 123, 236, 0.06);
+    transform: translateY(-1px);
+}
+.btn-outline:active {
+    transform: translateY(0);
+}
+
+.btn-outline-lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2.25rem;
+    background-color: transparent;
+    color: #4b7bec;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid #1e293b;
+    transition: all 0.3s ease;
+}
+.btn-outline-lg:hover {
+    border-color: #4b7bec;
+    color: #ffffff;
+    background-color: #4b7bec;
+    box-shadow: 0 6px 24px rgba(75, 123, 236, 0.25);
+}
+
+/* -------------------------------------------------------
+   6. SEÇÕES — Cabeçalhos
+   ------------------------------------------------------- */
+
+.section-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+@media (min-width: 768px) {
+    .section-heading {
+        font-size: 2rem;
+    }
+}
+
+.section-number {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.1rem;
+    color: #4b7bec;
+    font-weight: 500;
+}
+
+/* -------------------------------------------------------
+   7. CARDS GENÉRICOS (Sobre, Info)
+   ------------------------------------------------------- */
+
+.info-card {
+    background-color: #151d2e;
+    border: 1px solid #1e293b;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    text-align: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease,
+                transform 0.25s ease;
+}
+.info-card:hover {
+    border-color: #334155;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+.info-card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.info-card-title {
+    color: #e2e8f0;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+}
+
+.info-card-text {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+/* -------------------------------------------------------
+   8. SKILL CARDS (Tech Stack)
+   ------------------------------------------------------- */
+
+.skill-card {
+    background-color: #151d2e;
+    border: 1px solid #1e293b;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    border-top-width: 3px;
+    border-top-style: solid;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease,
+                transform 0.25s ease;
+}
+.skill-card:hover {
+    border-color: #334155;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.skill-card.accent-blue   { border-top-color: #4b7bec; }
+.skill-card.accent-green  { border-top-color: #20bf6b; }
+.skill-card.accent-amber  { border-top-color: #eab308; }
+.skill-card.accent-rose   { border-top-color: #f43f5e; }
+
+.skill-card-title {
+    color: #e2e8f0;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.85rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Tags de habilidades (substitui glass-effect por estilo refinado) */
+.skill-tag {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    background-color: #1e293b;
+    color: #cbd5e1;
+    font-size: 0.7rem;
+    font-family: 'Fira Code', monospace;
+    border-radius: 0.3rem;
+    border: 1px solid #334155;
+    transition: color 0.2s ease, border-color 0.2s ease,
+                background-color 0.2s ease;
+}
+.skill-tag:hover {
+    color: #e2e8f0;
+    border-color: #4b7bec;
+    background-color: #1a2740;
+}
+
+/* -------------------------------------------------------
+   9. PROJECT CARDS
+   ------------------------------------------------------- */
+
+.project-card {
+    background-color: #151d2e;
+    border: 1px solid #1e293b;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease,
+                transform 0.25s ease;
+}
+.project-card:hover {
+    border-color: #334155;
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.project-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 0.5rem;
+}
+
+.project-card-desc {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    margin-bottom: 0.85rem;
+    flex-grow: 1;
+}
+
+.project-card-tags {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+/* -------------------------------------------------------
+   10. FILTROS DE PROJETOS
+   ------------------------------------------------------- */
+
+.filter-btn {
+    padding: 0.3rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid #334155;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+.filter-btn:hover {
+    color: #e2e8f0;
+    border-color: #64748b;
+}
+.filter-btn.active {
+    background-color: rgba(75, 123, 236, 0.1);
+    color: #4b7bec;
+    border-color: #4b7bec;
+}
+
+/* -------------------------------------------------------
+   11. TIMELINE (Trajetória)
+   ------------------------------------------------------- */
+
+.timeline {
+    position: relative;
+    border-left: 1px solid #1e293b;
+    margin-left: 0.5rem;
+    padding-bottom: 1rem;
+}
+@media (min-width: 768px) {
+    .timeline {
+        margin-left: 1rem;
+    }
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 1.75rem;
+    padding-bottom: 2.25rem;
+}
+@media (min-width: 768px) {
+    .timeline-item {
+        padding-left: 2.25rem;
+    }
+}
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+/* Bolinha da timeline */
+.timeline-dot {
+    position: absolute;
+    left: -0.45rem;
+    top: 0.3rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    background-color: #0a0f1c;
+    border: 2px solid #475569;
+    border-radius: 50%;
+}
+@media (min-width: 768px) {
+    .timeline-dot {
+        left: -0.45rem;
+    }
+}
+.timeline-dot.accent {
+    border-color: #4b7bec;
+}
+
+/* Datas */
+.timeline-date {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: #64748b;
+}
+.timeline-date.accent {
+    color: #4b7bec;
+}
+
+/* Títulos e textos */
+.timeline-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-top: 0.2rem;
+}
+.timeline-institution {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    margin-bottom: 0.35rem;
+}
+.timeline-text {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.55;
+}
+
+/* -------------------------------------------------------
+   12. CARD DE CERTIFICAÇÕES
+   ------------------------------------------------------- */
+
+.cert-card {
+    background-color: #151d2e;
+    border: 1px solid #1e293b;
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.3s ease;
+}
+.cert-card:hover {
+    border-color: #334155;
+}
+
+.cert-card-title {
+    color: #e2e8f0;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.85rem;
+    display: flex;
+    align-items: center;
+}
+
+.cert-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+@media (min-width: 768px) {
+    .cert-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* -------------------------------------------------------
+   13. SCROLL REVEAL (animação de entrada)
+   ------------------------------------------------------- */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* -------------------------------------------------------
+   14. UTILITÁRIOS
+   ------------------------------------------------------- */
+
+.hidden-project {
+    display: none !important;
+}
