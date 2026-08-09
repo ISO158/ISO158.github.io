@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Igor da Silva Oliveira | Data Scientist & AI Researcher</title>
 
+    <!-- ============================================================ -->
+    <!-- META TAGS (SEO & Compartilhamento Social)                    -->
+    <!-- ============================================================ -->
+    <meta name="description" content="Portfólio de Igor da Silva Oliveira. Cientista de Dados e Pesquisador em Inteligência Artificial, com base rigorosa em Física, Estatística e IA.">
+    <meta name="author" content="Igor da Silva Oliveira">
+    <meta name="theme-color" content="#0a0f1c"> <!-- Define a cor da barra de navegação no mobile -->
+
+    <!-- Open Graph (LinkedIn, Facebook, WhatsApp) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ISO158.github.io/">
+    <meta property="og:title" content="Igor da Silva Oliveira | Data Scientist & AI Researcher">
+    <meta property="og:description" content="Movido pelo desafio de resolver problemas complexos e descobrir padrões ocultos em grandes volumes de dados. Soluções em IA, Engenharia de Dados e IoT.">
+    <!-- Imagem que aparecerá no link (recomendado: 1200x630px). Usando a foto de perfil temporariamente -->
+    <meta property="og:image" content="https://ISO158.github.io/assets/img/profile.jpg">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ISO158.github.io/">
+    <meta name="twitter:title" content="Igor da Silva Oliveira | Data Scientist & AI Researcher">
+    <meta name="twitter:description" content="Movido pelo desafio de resolver problemas complexos e descobrir padrões ocultos em grandes volumes de dados.">
+    <meta name="twitter:image" content="https://ISO158.github.io/assets/img/profile.jpg">
+
     <!-- Favicon -->
     <!-- Substitua pelo seu favicon em assets/img/favicon.ico -->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -165,13 +188,13 @@
                 </div>
 
             </div>
-        </div>
-    </section>
+        </div>        </div>    </section>
 
     <!-- ============================================================ -->
     <!-- B. SOBRE MIM                                                   -->
     <!-- ============================================================ -->
-    <section id="sobre" class="py-20 md:py-28 px-6 md:px-12 max-w-6xl mx-auto reveal">
+    <section id="sobre" class="about-section reveal">
+        <div class="about-section-inner py-20 md:py-28 px-6 md:px-12 max-w-6xl mx-auto">
         <h3 class="section-heading">
             <span class="section-number">01.</span> Sobre Mim
         </h3>
@@ -233,6 +256,7 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
     <!-- ============================================================ -->
@@ -256,7 +280,7 @@
                     <span class="skill-tag">R</span>
                     <span class="skill-tag">Pandas</span>
                     <span class="skill-tag">Matplotlib</span>
-                    <span class="skill-tag">PySparks</span>
+                    <span class="skill-tag">PySpark</span>
                     <span class="skill-tag">NumPy</span>
                 </div>
             </div>
@@ -404,8 +428,8 @@
             <div class="modal-body">
 
                 <!-- GALERIA DE IMAGENS DO SPIN COATER -->
-                <!-- Imagens esperadas em assets/img/projects/spin-coater/:
-                     cover.jpg, equipment.jpg, pwm-rpm-graph.png, circuit-diagram.png -->
+                <!-- Imagens em assets/img/projects/spin-coater/:
+                     cover.jpg, amostras.png, diagrama_eletrico.jpg, residual_velocidade.png -->
                 <div class="gallery">
                     <!-- Imagem principal (visualização grande) -->
                     <div class="gallery-main" id="gallery-spin-main">
@@ -420,23 +444,35 @@
                             <i class="fa-solid fa-magnifying-glass-plus"></i> Clique para ampliar
                         </div>
                     </div>
-                    <!-- Miniaturas -->
+                    <!-- Miniaturas interativas -->
                     <div class="gallery-thumbs" id="gallery-spin-thumbs">
-                        <button class="gallery-thumb active" data-full="assets/img/projects/spin-coater/cover.jpg" data-alt="Spin Coater — vista geral">
+                        <button class="gallery-thumb active" data-full="assets/img/projects/spin-coater/cover.jpg" data-alt="Spin Coater DIY — vista geral do equipamento">
                             <img src="assets/img/projects/spin-coater/cover.jpg" alt="Capa" loading="lazy" onerror="this.parentElement.style.display='none';">
-                            <span class="gallery-thumb-label">Capa</span>
+                            <span class="gallery-thumb-label">New Version</span>
                         </button>
-                        <button class="gallery-thumb" data-full="assets/img/projects/spin-coater/equipment.jpg" data-alt="Hardware impresso em 3D">
-                            <img src="assets/img/projects/spin-coater/equipment.jpg" alt="Hardware" loading="lazy" onerror="this.parentElement.style.display='none';">
-                            <span class="gallery-thumb-label">Hardware</span>
+                        <button class="gallery-thumb active" data-full="assets/img/projects/spin-coater/estrutura3d.png" data-alt="Estrutura 3D">
+                            <img src="assets/img/projects/spin-coater/estrutura3d.png" alt="Capa" loading="lazy" onerror="this.parentElement.style.display='none';">
+                            <span class="gallery-thumb-label">Structure</span>
                         </button>
-                        <button class="gallery-thumb" data-full="assets/img/projects/spin-coater/pwm-rpm-graph.png" data-alt="Gráfico de calibração PWM vs. RPM">
-                            <img src="assets/img/projects/spin-coater/pwm-rpm-graph.png" alt="Gráfico" loading="lazy" onerror="this.parentElement.style.display='none';">
-                            <span class="gallery-thumb-label">Gráfico</span>
+                        <button class="gallery-thumb active" data-full="assets/img/projects/spin-coater/old_cover.png" data-alt="Spin Coater DIY versão antiga">
+                            <img src="assets/img/projects/spin-coater/old_cover.png" alt="Capa" loading="lazy" onerror="this.parentElement.style.display='none';">
+                            <span class="gallery-thumb-label">Old Version</span>
                         </button>
-                        <button class="gallery-thumb" data-full="assets/img/projects/spin-coater/circuit-diagram.png" data-alt="Esquemático do circuito elétrico">
-                            <img src="assets/img/projects/spin-coater/circuit-diagram.png" alt="Circuito" loading="lazy" onerror="this.parentElement.style.display='none';">
-                            <span class="gallery-thumb-label">Circuito</span>
+                        <button class="gallery-thumb" data-full="assets/img/projects/spin-coater/amostras.png" data-alt="Substratos e amostras processadas no Spin Coater">
+                            <img src="assets/img/projects/spin-coater/amostras.png" alt="Amostras" loading="lazy" onerror="this.parentElement.style.display='none';">
+                            <span class="gallery-thumb-label">Samples</span>
+                        </button>
+                        <button class="gallery-thumb" data-full="assets/img/projects/spin-coater/diagrama_eletrico.jpg" data-alt="Diagrama esquemático do circuito elétrico do Spin Coater">
+                            <img src="assets/img/projects/spin-coater/diagrama_eletrico.jpg" alt="Diagrama" loading="lazy" onerror="this.parentElement.style.display='none';">
+                            <span class="gallery-thumb-label">Diagram</span>
+                        </button>
+                        <button class="gallery-thumb" data-full="assets/img/projects/spin-coater/residual_velocidade.png" data-alt="Gráfico de análise de velocidade residual — calibração PWM vs. RPM">
+                            <img src="assets/img/projects/spin-coater/residual_velocidade.png" alt="Residual" loading="lazy" onerror="this.parentElement.style.display='none';">
+                            <span class="gallery-thumb-label">Speed</span>
+                        </button>
+                        <button class="gallery-thumb" data-full="assets/img/projects/spin-coater/tension_temp.png" data-alt="Gráfico de análise de Temperatura e Tensão em função do PWM">
+                            <img src="assets/img/projects/spin-coater/tension_temp.png" alt="Residual" loading="lazy" onerror="this.parentElement.style.display='none';">
+                            <span class="gallery-thumb-label">Temp</span>
                         </button>
                     </div>
                 </div>
@@ -493,7 +529,7 @@
                     <p>
                         Desenvolvi pipelines completos de processamento de sinais espectroscópicos
                         utilizando <strong>redes neurais profundas (PyTorch)</strong> para automatizar
-                        a deconvolução de picos sobrepostos — um problema clássico e desafiador
+                        a deconvolução de picos sobrepostos, um problema clássico e desafiador
                         em experimentos de fluorescência e dinâmica de membranas lipídicas.
                     </p>
                     <p>
@@ -545,7 +581,7 @@
                         Os agentes foram projetados para executar tarefas complexas em pipeline:
                         ingestão de documentos não estruturados, extração de entidades,
                         classificação contextual e geração de respostas fundamentadas em
-                        bases de conhecimento proprietárias — tudo orquestrado em Python
+                        bases de conhecimento proprietárias, tudo orquestrado em Python
                         com APIs nativas da Azure.
                     </p>
                     <p>
@@ -561,7 +597,8 @@
     <!-- ============================================================ -->
     <!-- E. TRAJETÓRIA & EXPERIÊNCIA                                    -->
     <!-- ============================================================ -->
-    <section id="experiencia" class="py-20 md:py-28 px-6 md:px-12 max-w-4xl mx-auto reveal">
+    <section id="experiencia" class="timeline-section reveal">
+        <div class="timeline-section-inner py-20 md:py-28 px-6 md:px-12 max-w-4xl mx-auto">
         <h3 class="section-heading">
             <span class="section-number">04.</span> Trajetória &amp; Experiência
         </h3>
@@ -628,6 +665,7 @@
                 <li>Azure AI &amp; Fundamentos de Deep Learning</li>
             </ul>
         </div>
+        </div>
     </section>
 
     <!-- ============================================================ -->
@@ -635,9 +673,8 @@
     <!-- ============================================================ -->
     <section id="contato" class="contact-section reveal">
         <div class="max-w-4xl mx-auto">
-            <p class="text-accent font-mono text-sm tracking-widest mb-3 uppercase text-center">05. Qual é o próximo passo?</p>
             <h3 class="section-heading justify-center">
-                Vamos Conversar
+                <span class="section-number">05.</span> Vamos Conversar
             </h3>
             <p class="text-txtSecondary text-center mb-10 max-w-xl mx-auto leading-relaxed">
                 Estou em transição para desafios no setor corporativo como Cientista de Dados ou Analista.

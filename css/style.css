@@ -871,74 +871,101 @@ body.modal-open {
 }
 
 /* ============================================================
-   19. BACKGROUNDS DINÂMICOS POR SEÇÃO
+   19. BACKGROUND UNIFICADO — DOT GRID SUTIL
+   Todas as seções do site compartilham o mesmo padrão de
+   fundo: um dot-grid (pontilhado) fino, elegante e uniforme,
+   com opacidade entre 2% e 3.5%.
+   Apenas a seção de Contato mantém destaque com #111827.
+   Para ajustar visibilidade: altere o valor de opacity abaixo.
    ============================================================ */
 
-/* --- Tech Stack: linhas diagonais sutis (engenharia de dados) --- */
-.skills-section {
+/* -------------------------------------------------------
+   19.A. PADRÃO DOT-GRID COMPARTILHADO
+   Aplicado via ::before em cada section wrapper.
+   Opacidade: 0.035 (3.5%) — ajustável.
+   ------------------------------------------------------- */
+
+/* Mixin-like: aplica o dot-grid em um pseudo-elemento */
+.about-section,
+.skills-section,
+.projects-section,
+.timeline-section {
     position: relative;
     background-color: #0a0f1c;
 }
-.skills-section::before {
+
+.about-section::before,
+.skills-section::before,
+.projects-section::before,
+.timeline-section::before {
     content: '';
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    background-image: repeating-linear-gradient(
-        135deg,
-        rgba(75, 123, 236, 0.03) 0px,
-        rgba(75, 123, 236, 0.03) 1px,
-        transparent 1px,
-        transparent 20px
-    ),
-    repeating-linear-gradient(
-        45deg,
-        rgba(32, 191, 107, 0.02) 0px,
-        rgba(32, 191, 107, 0.02) 1px,
-        transparent 1px,
-        transparent 20px
+    opacity: 0.035; /* ← ajuste aqui para + ou - visibilidade */
+    background-image: radial-gradient(
+        circle at 1px 1px,
+        rgba(75, 123, 236, 0.22) 1px,
+        transparent 0
     );
+    background-size: 26px 26px;
+
 }
-.skills-section-inner {
+
+/* Wrappers internos ficam acima do dot-grid */
+.about-section-inner,
+.skills-section-inner,
+.projects-section-inner,
+.timeline-section-inner {
     position: relative;
     z-index: 1;
 }
 
-/* --- Projetos: brilho radial sutil (glow effect) --- */
-.projects-section {
-    position: relative;
-    background-color: #0a0f1c;
-    overflow: hidden;
-}
-.projects-section::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 60%;
-    pointer-events: none;
-    z-index: 0;
-    background: radial-gradient(
-        ellipse at center,
-        rgba(75, 123, 236, 0.06) 0%,
-        rgba(32, 191, 107, 0.03) 40%,
-        transparent 70%
-    );
-}
-.projects-section-inner {
-    position: relative;
-    z-index: 1;
+/* -------------------------------------------------------
+   19.B. HERO — Dot-grid + gradiente radial na foto
+   O hero já possui .hero-dot-grid (seção 15). Apenas
+   mantemos o gradiente radial focado na foto.
+   ------------------------------------------------------- */
+
+/* Remove a camada extra de cruzes matemáticas (antigo #hero::after) */
+#hero::after {
+    display: none;
 }
 
-/* --- Contato: fundo destacado com borda superior --- */
+/* -------------------------------------------------------
+   19.C. CONTATO — Destaque preservado
+   Fundo #111827 com borda superior e glow.
+   Sem dot-grid — quebra visual intencional.
+   ------------------------------------------------------- */
+
 .contact-section {
     position: relative;
     background-color: #111827;
     border-top: 1px solid #1e293b;
     padding: 5rem 1.5rem;
+    overflow: hidden;
+}
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 180px;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+        ellipse at 50% 0%,
+        rgba(75, 123, 236, 0.05) 0%,
+        rgba(32, 191, 107, 0.02) 40%,
+        transparent 70%
+    );
+}
+.contact-section > .max-w-4xl {
+    position: relative;
+    z-index: 1;
 }
 @media (min-width: 768px) {
     .contact-section {
