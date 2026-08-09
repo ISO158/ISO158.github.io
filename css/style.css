@@ -869,3 +869,429 @@ body.modal-open {
     line-height: 1.6;
     margin: 0;
 }
+
+/* ============================================================
+   19. BACKGROUNDS DINÂMICOS POR SEÇÃO
+   ============================================================ */
+
+/* --- Tech Stack: linhas diagonais sutis (engenharia de dados) --- */
+.skills-section {
+    position: relative;
+    background-color: #0a0f1c;
+}
+.skills-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: repeating-linear-gradient(
+        135deg,
+        rgba(75, 123, 236, 0.03) 0px,
+        rgba(75, 123, 236, 0.03) 1px,
+        transparent 1px,
+        transparent 20px
+    ),
+    repeating-linear-gradient(
+        45deg,
+        rgba(32, 191, 107, 0.02) 0px,
+        rgba(32, 191, 107, 0.02) 1px,
+        transparent 1px,
+        transparent 20px
+    );
+}
+.skills-section-inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Projetos: brilho radial sutil (glow effect) --- */
+.projects-section {
+    position: relative;
+    background-color: #0a0f1c;
+    overflow: hidden;
+}
+.projects-section::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 60%;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(75, 123, 236, 0.06) 0%,
+        rgba(32, 191, 107, 0.03) 40%,
+        transparent 70%
+    );
+}
+.projects-section-inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Contato: fundo destacado com borda superior --- */
+.contact-section {
+    position: relative;
+    background-color: #111827;
+    border-top: 1px solid #1e293b;
+    padding: 5rem 1.5rem;
+}
+@media (min-width: 768px) {
+    .contact-section {
+        padding: 7rem 2rem;
+    }
+}
+
+/* ============================================================
+   20. PAINEL DE CONTATO (CARDS)
+   ============================================================ */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin-bottom: 1.75rem;
+}
+@media (min-width: 640px) {
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Card de contato individual */
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.9rem 1.1rem;
+    background-color: #151d2e;
+    border: 1px solid #1e293b;
+    border-radius: 0.65rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.contact-card:hover {
+    border-color: #334155;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Ícone do card */
+.contact-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    background-color: #1e293b;
+    color: #4b7bec;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Info (label + valor) */
+.contact-card-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+.contact-card-label {
+    font-size: 0.65rem;
+    font-family: 'Fira Code', monospace;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.contact-card-value {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    word-break: break-all;
+}
+
+/* Ações (botões) */
+.contact-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #4b7bec;
+    background-color: rgba(75, 123, 236, 0.08);
+    border: 1px solid rgba(75, 123, 236, 0.2);
+    border-radius: 0.35rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.contact-btn:hover {
+    background-color: rgba(75, 123, 236, 0.15);
+    color: #e2e8f0;
+}
+
+/* Botão de copiar */
+.contact-btn-copy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    font-size: 0.7rem;
+    color: #64748b;
+    background-color: transparent;
+    border: 1px solid #334155;
+    border-radius: 0.35rem;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease,
+                background-color 0.2s ease;
+}
+.contact-btn-copy:hover {
+    color: #4b7bec;
+    border-color: #4b7bec;
+    background-color: rgba(75, 123, 236, 0.06);
+}
+/* Feedback de cópia bem-sucedida */
+.contact-btn-copy.copied {
+    color: #20bf6b;
+    border-color: #20bf6b;
+    background-color: rgba(32, 191, 107, 0.1);
+}
+
+/* WhatsApp card destaque */
+.contact-card-whatsapp {
+    border-color: rgba(32, 191, 107, 0.25);
+}
+.contact-card-whatsapp:hover {
+    border-color: rgba(32, 191, 107, 0.4);
+    box-shadow: 0 2px 16px rgba(32, 191, 107, 0.08);
+}
+.contact-card-whatsapp .contact-card-icon {
+    background-color: rgba(32, 191, 107, 0.1);
+    color: #20bf6b;
+}
+.contact-btn-whatsapp {
+    color: #20bf6b;
+    background-color: rgba(32, 191, 107, 0.08);
+    border-color: rgba(32, 191, 107, 0.2);
+}
+.contact-btn-whatsapp:hover {
+    background-color: rgba(32, 191, 107, 0.15);
+    color: #e2e8f0;
+}
+
+/* Meta secundária (ex: fuso horário) */
+.contact-card-meta {
+    font-size: 0.65rem;
+    color: #64748b;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Linha de redes sociais */
+.social-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+}
+
+.social-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.72rem;
+    font-family: 'Fira Code', monospace;
+    color: #94a3b8;
+    background-color: #151d2e;
+    border: 1px solid #1e293b;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease,
+                background-color 0.2s ease;
+}
+.social-chip:hover {
+    color: #e2e8f0;
+    border-color: #4b7bec;
+    background-color: #1a2332;
+}
+
+/* ============================================================
+   21. GALERIA DE IMAGENS (MODAL SPIN COATER)
+   ============================================================ */
+
+/* Painel mais largo para acomodar a galeria */
+.modal-panel-wide {
+    max-width: 720px;
+}
+
+/* Container da galeria */
+.gallery {
+    margin-bottom: 1.25rem;
+}
+
+/* Imagem principal */
+.gallery-main {
+    position: relative;
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid #1e293b;
+    margin-bottom: 0.65rem;
+    cursor: pointer;
+    background-color: #0a0f1c;
+}
+.gallery-main img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 310px;
+    object-fit: contain;
+    background-color: #0a0f1c;
+    transition: opacity 0.2s ease;
+}
+.gallery-main:hover img {
+    opacity: 0.85;
+}
+
+/* Hint de zoom ao passar o mouse */
+.gallery-zoom-hint {
+    position: absolute;
+    bottom: 0.65rem;
+    right: 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.55rem;
+    font-size: 0.65rem;
+    color: #cbd5e1;
+    background-color: rgba(10, 15, 28, 0.8);
+    border: 1px solid #334155;
+    border-radius: 0.3rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.gallery-main:hover .gallery-zoom-hint {
+    opacity: 1;
+}
+
+/* Miniaturas */
+.gallery-thumbs {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+}
+
+.gallery-thumb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+    padding: 0.3rem;
+    background-color: #1e293b;
+    border: 2px solid transparent;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.gallery-thumb:hover {
+    border-color: #475569;
+    background-color: #334155;
+}
+.gallery-thumb.active {
+    border-color: #4b7bec;
+    background-color: rgba(75, 123, 236, 0.1);
+}
+.gallery-thumb img {
+    display: block;
+    width: 68px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+.gallery-thumb-label {
+    font-size: 0.6rem;
+    font-family: 'Fira Code', monospace;
+    color: #94a3b8;
+    text-align: center;
+    white-space: nowrap;
+}
+.gallery-thumb.active .gallery-thumb-label {
+    color: #4b7bec;
+}
+
+/* ============================================================
+   22. LIGHTBOX (visualização em tela cheia)
+   ============================================================ */
+
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: rgba(10, 15, 28, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    border-radius: 0.5rem;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.lightbox-close:hover {
+    background-color: #334155;
+    border-color: #4b7bec;
+}
+
+.lightbox-img {
+    max-width: 92vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    border: 1px solid #1e293b;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}

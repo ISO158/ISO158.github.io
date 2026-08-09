@@ -238,7 +238,8 @@
     <!-- ============================================================ -->
     <!-- C. COMPETÊNCIAS (Tech Stack)                                   -->
     <!-- ============================================================ -->
-    <section id="skills" class="py-20 md:py-28 px-6 md:px-12 max-w-6xl mx-auto reveal">
+    <section id="skills" class="skills-section reveal">
+        <div class="skills-section-inner py-20 md:py-28 px-6 md:px-12 max-w-6xl mx-auto">
         <h3 class="section-heading">
             <span class="section-number">02.</span> Tech Stack
         </h3>
@@ -314,12 +315,14 @@
             </div>
 
         </div>
+        </div>
     </section>
 
     <!-- ============================================================ -->
     <!-- D. PROJETOS                                                    -->
     <!-- ============================================================ -->
-    <section id="projetos" class="py-20 md:py-28 px-6 md:px-12 max-w-7xl mx-auto reveal">
+    <section id="projetos" class="projects-section reveal">
+        <div class="projects-section-inner py-20 md:py-28 px-6 md:px-12 max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row md:justify-between md:items-end mb-10 gap-5">
             <h3 class="section-heading !mb-0">
                 <span class="section-number">03.</span> Projetos &amp; Desenvolvimentos
@@ -385,31 +388,63 @@
 
             <!-- Os repositórios do GitHub são injetados aqui pelo script.js -->
         </div>
+        </div>
     </section>
 
     <!-- ============================================================ -->
     <!-- MODAIS DE PROJETOS (estrutura oculta, exibida via JS)         -->
     <!-- ============================================================ -->
 
-    <!-- Modal 1: Spin Coater DIY -->
+    <!-- Modal 1: Spin Coater DIY (com galeria de imagens) -->
     <div class="modal-overlay" id="modal-spin-coater" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="modal-panel">
+        <div class="modal-panel modal-panel-wide">
             <button class="modal-close" aria-label="Fechar modal">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="modal-body">
-                <!-- Imagem do projeto — substitua pelo caminho real -->
-                <!-- Sugestão: assets/img/projects/spin-coater.jpg -->
-                <div class="modal-image">
-                    <img src="assets/img/projects/spin-coater.jpg"
-                         alt="Spin Coater DIY — hardware de precisão para laboratório"
-                         loading="lazy"
-                         onerror="this.parentElement.style.display='none';">
+
+                <!-- GALERIA DE IMAGENS DO SPIN COATER -->
+                <!-- Imagens esperadas em assets/img/projects/spin-coater/:
+                     cover.jpg, equipment.jpg, pwm-rpm-graph.png, circuit-diagram.png -->
+                <div class="gallery">
+                    <!-- Imagem principal (visualização grande) -->
+                    <div class="gallery-main" id="gallery-spin-main">
+                        <img src="assets/img/projects/spin-coater/cover.jpg"
+                             alt="Spin Coater DIY — vista geral do equipamento"
+                             id="gallery-spin-display"
+                             loading="lazy"
+                             onclick="openLightbox(this.src, this.alt)"
+                             title="Clique para ampliar">
+                        <!-- Overlay de clique para lightbox -->
+                        <div class="gallery-zoom-hint">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i> Clique para ampliar
+                        </div>
+                    </div>
+                    <!-- Miniaturas -->
+                    <div class="gallery-thumbs" id="gallery-spin-thumbs">
+                        <button class="gallery-thumb active" data-full="assets/img/projects/spin-coater/cover.jpg" data-alt="Spin Coater — vista geral">
+                            <img src="assets/img/projects/spin-coater/cover.jpg" alt="Capa" loading="lazy" onerror="this.parentElement.style.display='none';">
+                            <span class="gallery-thumb-label">Capa</span>
+                        </button>
+                        <button class="gallery-thumb" data-full="assets/img/projects/spin-coater/equipment.jpg" data-alt="Hardware impresso em 3D">
+                            <img src="assets/img/projects/spin-coater/equipment.jpg" alt="Hardware" loading="lazy" onerror="this.parentElement.style.display='none';">
+                            <span class="gallery-thumb-label">Hardware</span>
+                        </button>
+                        <button class="gallery-thumb" data-full="assets/img/projects/spin-coater/pwm-rpm-graph.png" data-alt="Gráfico de calibração PWM vs. RPM">
+                            <img src="assets/img/projects/spin-coater/pwm-rpm-graph.png" alt="Gráfico" loading="lazy" onerror="this.parentElement.style.display='none';">
+                            <span class="gallery-thumb-label">Gráfico</span>
+                        </button>
+                        <button class="gallery-thumb" data-full="assets/img/projects/spin-coater/circuit-diagram.png" data-alt="Esquemático do circuito elétrico">
+                            <img src="assets/img/projects/spin-coater/circuit-diagram.png" alt="Circuito" loading="lazy" onerror="this.parentElement.style.display='none';">
+                            <span class="gallery-thumb-label">Circuito</span>
+                        </button>
+                    </div>
                 </div>
+
                 <span class="modal-category">IoT &amp; Hardware</span>
                 <h3 class="modal-title">Spin Coater DIY &amp; Instrumentação de Precisão</h3>
                 <div class="modal-tags">
-                    <span>ESP32</span> <span>C++</span> <span>Modelagem 3D</span> <span>Impressão 3D</span>
+                    <span>ESP32</span> <span>C++</span> <span>Modelagem 3D</span> <span>Impressão 3D</span> <span>OriginPro</span>
                 </div>
                 <div class="modal-text">
                     <p>
@@ -424,10 +459,10 @@
                         para monitoramento em tempo real.
                     </p>
                     <p>
-                        A visualização e análise dos dados de calibração foi conduzida com
-                        <strong>OriginPro</strong>, permitindo ajustes finos de parâmetros
-                        e garantindo reprodutibilidade experimental. O projeto evidencia minha
-                        capacidade de unir física experimental, engenharia de hardware e ciência de dados.
+                        A calibração do sistema foi validada com <strong>análise estatística</strong> da
+                        relação PWM vs. RPM (gráfico acima), utilizando <strong>OriginPro</strong> para
+                        ajuste de curvas e visualização. O diagrama do circuito elétrico documenta
+                        toda a arquitetura de controle, garantindo reprodutibilidade experimental.
                     </p>
                 </div>
             </div>
@@ -596,19 +631,98 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- F. CONTATO                                                     -->
+    <!-- F. CONTATO — Painel Completo de Contato                       -->
     <!-- ============================================================ -->
-    <section id="contato" class="py-20 md:py-28 px-6 md:px-12 text-center max-w-2xl mx-auto reveal">
-        <p class="text-accent font-mono text-sm tracking-widest mb-3 uppercase">05. Qual é o próximo passo?</p>
-        <h3 class="text-3xl sm:text-4xl md:text-5xl font-bold text-txtPrimary mb-5">Vamos Conversar</h3>
-        <p class="text-txtSecondary mb-10 leading-relaxed">
-            Estou em transição para desafios no setor corporativo como Cientista de Dados ou Analista.
-            Se você busca alguém com forte raciocínio lógico, experiência em IA e paixão por resolver
-            problemas, minha caixa de entrada está aberta.
-        </p>
-        <a href="mailto:igor.oliveira158@hotmail.com" class="btn-outline-lg">
-            <i class="fa-solid fa-paper-plane mr-2"></i> Diga Olá
-        </a>
+    <section id="contato" class="contact-section reveal">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-accent font-mono text-sm tracking-widest mb-3 uppercase text-center">05. Qual é o próximo passo?</p>
+            <h3 class="section-heading justify-center">
+                Vamos Conversar
+            </h3>
+            <p class="text-txtSecondary text-center mb-10 max-w-xl mx-auto leading-relaxed">
+                Estou em transição para desafios no setor corporativo como Cientista de Dados ou Analista.
+                Se você busca alguém com forte raciocínio lógico, experiência em IA e paixão por resolver
+                problemas, entre em contato por qualquer canal abaixo.
+            </p>
+
+            <!-- Grade de cards de contato -->
+            <div class="contact-grid">
+
+                <!-- Card: E-mail USP (principal) -->
+                <div class="contact-card">
+                    <div class="contact-card-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="contact-card-info">
+                        <span class="contact-card-label">E-mail Institucional (USP)</span>
+                        <span class="contact-card-value">igor.oliveira158@usp.br</span>
+                    </div>
+                    <div class="contact-card-actions">
+                        <a href="mailto:igor.oliveira158@usp.br" class="contact-btn" title="Enviar e-mail">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar
+                        </a>
+                        <button class="contact-btn-copy" data-copy="igor.oliveira158@usp.br" title="Copiar e-mail">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card: E-mail Hotmail (pessoal) -->
+                <div class="contact-card">
+                    <div class="contact-card-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <div class="contact-card-info">
+                        <span class="contact-card-label">E-mail Pessoal</span>
+                        <span class="contact-card-value">igor.oliveira158@hotmail.com</span>
+                    </div>
+                    <div class="contact-card-actions">
+                        <a href="mailto:igor.oliveira158@hotmail.com" class="contact-btn" title="Enviar e-mail">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar
+                        </a>
+                        <button class="contact-btn-copy" data-copy="igor.oliveira158@hotmail.com" title="Copiar e-mail">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card: WhatsApp -->
+                <div class="contact-card contact-card-whatsapp">
+                    <div class="contact-card-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div class="contact-card-info">
+                        <span class="contact-card-label">WhatsApp</span>
+                        <span class="contact-card-value">+55 (11) 96824-7913</span>
+                    </div>
+                    <div class="contact-card-actions">
+                        <a href="https://wa.me/5511968247913" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-whatsapp" title="Abrir WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i> Conversar
+                        </a>
+                        <button class="contact-btn-copy" data-copy="+55 (11) 96824-7913" title="Copiar número">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card: Localização -->
+                <div class="contact-card">
+                    <div class="contact-card-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="contact-card-info">
+                        <span class="contact-card-label">Localização</span>
+                        <span class="contact-card-value">São Paulo, SP — Brasil</span>
+                    </div>
+                    <div class="contact-card-actions">
+                        <span class="contact-card-meta"><i class="fa-regular fa-clock"></i> GMT-3 (BRT)</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Links de Redes Sociais -->
+            <div class="social-row">
+                <a href="https://github.com/ISO158" target="_blank" rel="noopener noreferrer" class="social-chip">
+                    <i class="fa-brands fa-github"></i> github.com/ISO158
+                </a>
+                <a href="https://www.linkedin.com/in/igor-oliveira158/" target="_blank" rel="noopener noreferrer" class="social-chip">
+                    <i class="fa-brands fa-linkedin"></i> linkedin.com/in/igor-oliveira158
+                </a>
+            </div>
+        </div>
     </section>
 
     <!-- ============================================================ -->
@@ -616,17 +730,21 @@
     <!-- ============================================================ -->
     <footer class="py-10 text-center border-t border-borderSubtle">
         <div class="flex justify-center space-x-6 mb-4">
-            <a href="https://github.com/ISO158" target="_blank"
+            <a href="https://github.com/ISO158" target="_blank" rel="noopener noreferrer"
                class="text-txtMuted hover:text-txtPrimary transition-colors" aria-label="GitHub">
                 <i class="fa-brands fa-github text-xl"></i>
             </a>
-            <a href="https://www.linkedin.com/in/igor-oliveira158/" target="_blank"
+            <a href="https://www.linkedin.com/in/igor-oliveira158/" target="_blank" rel="noopener noreferrer"
                class="text-txtMuted hover:text-accent transition-colors" aria-label="LinkedIn">
                 <i class="fa-brands fa-linkedin text-xl"></i>
             </a>
-            <a href="mailto:igor.oliveira158@hotmail.com"
-               class="text-txtMuted hover:text-txtPrimary transition-colors" aria-label="E-mail">
+            <a href="mailto:igor.oliveira158@usp.br"
+               class="text-txtMuted hover:text-txtPrimary transition-colors" aria-label="E-mail USP">
                 <i class="fa-solid fa-envelope text-xl"></i>
+            </a>
+            <a href="https://wa.me/5511968247913" target="_blank" rel="noopener noreferrer"
+               class="text-txtMuted hover:text-accentAlt transition-colors" aria-label="WhatsApp">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
             </a>
         </div>
         <p class="text-txtMuted font-mono text-xs">
@@ -634,6 +752,16 @@
             Hospedado no <i class="fa-brands fa-github"></i> GitHub Pages
         </p>
     </footer>
+
+    <!-- ============================================================ -->
+    <!-- LIGHTBOX (visualização em tela cheia de imagens)              -->
+    <!-- ============================================================ -->
+    <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <button class="lightbox-close" aria-label="Fechar lightbox">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img src="" alt="" id="lightbox-img" class="lightbox-img">
+    </div>
 
     <!-- Script Principal -->
     <script src="js/script.js"></script>

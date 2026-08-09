@@ -297,4 +297,115 @@ document.addEventListener("DOMContentLoaded", () => {
             closeModal(activeModal);
         }
     });
+
+    // ============================================================
+    // 6. BOTÕES DE COPIAR (CONTATO)
+    // ============================================================
+    const copyButtons = document.querySelectorAll('.contact-btn-copy[data-copy]');
+
+    copyButtons.forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const textToCopy = btn.getAttribute('data-copy');
+            if (!textToCopy) return;
+
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                // Feedback visual: ícone de check por 2 segundos
+                const icon = btn.querySelector('i');
+                const originalClass = icon.className;
+                icon.className = 'fa-solid fa-check';
+                btn.classList.add('copied');
+
+                setTimeout(() => {
+                    icon.className = originalClass;
+                    btn.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                console.warn('Falha ao copiar para a área de transferência:', err);
+            }
+        });
+    });
+
+    // ============================================================
+    // 7. GALERIA DE IMAGENS (MODAL SPIN COATER)
+    // ============================================================
+    const galleryThumbsContainers = document.querySelectorAll('.gallery-thumbs');
+
+    galleryThumbsContainers.forEach(container => {
+        // Encontra a imagem principal associada (no mesmo modal)
+        const modalPanel = container.closest('.modal-panel');
+        if (!modalPanel) return;
+
+        const mainImg = modalPanel.querySelector('.gallery-main img');
+        const thumbs = container.querySelectorAll('.gallery-thumb');
+
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                // Remove 'active' de todas as thumbs deste container
+                thumbs.forEach(t => t.classList.remove('active'));
+                // Marca a thumb clicada como ativa
+                thumb.classList.add('active');
+
+                // Atualiza a imagem principal
+                const fullSrc = thumb.getAttribute('data-full');
+                const altText = thumb.getAttribute('data-alt') || '';
+                if (mainImg && fullSrc) {
+                    mainImg.src = fullSrc;
+                    mainImg.alt = altText;
+                    // Atualiza o onclick do lightbox
+                    mainImg.setAttribute('onclick', `openLightbox('${fullSrc}', '${altText.replace(/'/g, "\\'")}')`);
+                }
+            });
+        });
+    });
+
+    // ============================================================
+    // 8. LIGHTBOX (visualização em tela cheia)
+    // ============================================================
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
+
+    /**
+     * Abre o lightbox com a imagem em tamanho completo.
+     * Função exposta no escopo global para ser chamada via onclick inline.
+     */
+    window.openLightbox = function(src, alt) {
+        if (!lightbox || !lightboxImg) return;
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || '';
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+    };
+
+    function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+    }
+
+    // Fechar pelo botão X
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+    }
+
+    // Fechar clicando fora da imagem (no overlay)
+    if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target === lightboxImg) {
+                // Não fecha ao clicar na própria imagem
+                return;
+            }
+            closeLightbox();
+        });
+    }
+
+    // Fechar com tecla Esc (integrado ao listener existente)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
 });
