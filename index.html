@@ -238,6 +238,7 @@
                 <span class="tech-pill"><i class="fa-solid fa-bolt"></i> PySpark</span>
                 <span class="tech-pill"><i class="devicon-pytorch-plain colored"></i> PyTorch</span>
                 <span class="tech-pill"><i class="devicon-scikitlearn-plain colored"></i> Scikit-Learn</span>
+                <span class="tech-pill"><i class="fa-solid fa-diagram-project"></i> SciPy</span>
                 <span class="tech-pill"><i class="devicon-numpy-plain colored"></i> NumPy</span>
             </div>
             <!-- Duplicata para loop contínuo -->
@@ -257,7 +258,9 @@
                 <span class="tech-pill"><i class="devicon-matplotlib-plain colored"></i> Matplotlib</span>
                 <span class="tech-pill"><i class="fa-solid fa-bolt"></i> PySpark</span>
                 <span class="tech-pill"><i class="devicon-pytorch-plain colored"></i> PyTorch</span>
+                <span class="tech-pill"><i class="fa-solid fa-diagram-project"></i> SciPy</span>
                 <span class="tech-pill"><i class="devicon-scikitlearn-plain colored"></i> Scikit-Learn</span>
+
                 <span class="tech-pill"><i class="devicon-numpy-plain colored"></i> NumPy</span>
             </div>
         </div>
@@ -673,73 +676,97 @@
     <!-- E. TRAJETÓRIA & EXPERIÊNCIA                                    -->
     <!-- ============================================================ -->
     <section id="experiencia" class="timeline-section reveal">
-        <div class="timeline-section-inner py-20 md:py-28 px-6 md:px-12 max-w-4xl mx-auto">
-        <h3 class="section-heading">
-            <span class="section-number">04.</span> Trajetória &amp; Experiência
-        </h3>
+        <div class="timeline-section-inner py-20 md:py-28 px-6 md:px-12 max-w-6xl mx-auto">
+            <h3 class="section-heading">
+                <span class="section-number">04.</span> Trajetória &amp; Experiência
+            </h3>
 
-        <!-- Timeline -->
-        <div class="timeline">
+            <!-- Estrutura de Grid: Timeline na esquerda, Foto na direita -->
+            <div class="grid md:grid-cols-12 gap-10 items-start">
+                
+                <!-- Coluna Esquerda: Timeline e Certificados -->
+                <div class="md:col-span-7 lg:col-span-8">
+                    <!-- Timeline -->
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot accent"></div>
+                            <span class="timeline-date accent">2024 – 2026</span>
+                            <h4 class="timeline-title">Pesquisador Bolsista de Mestrado</h4>
+                            <p class="timeline-institution">FAPESP / USP</p>
+                            <p class="timeline-text">
+                                Modelagem e extração de dados, publicação internacional, e prêmio de melhor pôster
+                                SBBf 2024. Integração de análise estatística em problemas complexos.
+                            </p>
+                        </div>
 
-            <div class="timeline-item">
-                <div class="timeline-dot accent"></div>
-                <span class="timeline-date accent">2024 – 2026</span>
-                <h4 class="timeline-title">Pesquisador Bolsista de Mestrado</h4>
-                <p class="timeline-institution">FAPESP / USP</p>
-                <p class="timeline-text">
-                    Modelagem e extração de dados, publicação internacional, e prêmio de melhor pôster
-                    SBBf 2024. Integração de análise estatística em problemas complexos.
-                </p>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-date">2023</span>
+                            <h4 class="timeline-title">Monitor de Apoio ao Docente</h4>
+                            <p class="timeline-institution">USP</p>
+                            <p class="timeline-text">
+                                Disciplina de Introdução às Medidas em Física. Orientação focada em estatística
+                                de incertezas e tratamento de dados laboratoriais.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-date">2022 – 2023</span>
+                            <h4 class="timeline-title">Pesquisador Bolsista PIBIC</h4>
+                            <p class="timeline-institution">CNPq / USP</p>
+                            <p class="timeline-text">
+                                Análise autônoma de dados experimentais, exigindo proatividade e flexibilidade
+                                diante de cenários complexos.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-date">2019 – 2023</span>
+                            <h4 class="timeline-title">Graduação em Física</h4>
+                            <p class="timeline-institution">USP</p>
+                            <p class="timeline-text">
+                                Forte base analítica complementada com projetos de extensão e divulgação científica.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Certificações -->
+                    <div class="cert-card mt-12">
+                        <h4 class="cert-card-title">
+                            <i class="fa-solid fa-certificate text-accentAlt mr-2"></i> Certificações em Destaque
+                        </h4>
+                        <ul class="cert-list">
+                            <li>Aspire Leaders Program</li>
+                            <li>AI &amp; PLN (O.P. Jindal Global University)</li>
+                            <li>Neural Networks (IFUSP)</li>
+                            <li>Introdução ao Big Data (FIA)</li>
+                            <li>Agile &amp; Design Thinking (Univ. of Virginia)</li>
+                            <li>Azure AI &amp; Fundamentos de Deep Learning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Coluna Direita: Foto da Apresentação -->
+                <div class="md:col-span-5 lg:col-span-4">
+                    <div class="poster-card">
+                        <!-- Imagem com lightbox nativo já existente no seu script -->
+                        <img src="assets/img/IMG-20251030-WA0002.jpg" 
+                             alt="Apresentação do pôster com Menção Honrosa" 
+                             class="poster-img"
+                             loading="lazy"
+                             onclick="openLightbox(this.src, this.alt)" 
+                             title="Clique para ampliar">
+                        
+                        <!-- Legenda -->
+                        <div class="poster-caption">
+                            <i class="fa-solid fa-camera mr-1"></i> Apresentação do pôster no 49th Annual Meeting of the Brazilian Biophysical Society.
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <span class="timeline-date">2023</span>
-                <h4 class="timeline-title">Monitor de Apoio ao Docente</h4>
-                <p class="timeline-institution">USP</p>
-                <p class="timeline-text">
-                    Disciplina de Introdução às Medidas em Física. Orientação focada em estatística
-                    de incertezas e tratamento de dados laboratoriais.
-                </p>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <span class="timeline-date">2022 – 2023</span>
-                <h4 class="timeline-title">Pesquisador Bolsista PIBIC</h4>
-                <p class="timeline-institution">CNPq / USP</p>
-                <p class="timeline-text">
-                    Análise autônoma de dados experimentais, exigindo proatividade e flexibilidade
-                    diante de cenários complexos.
-                </p>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <span class="timeline-date">2019 – 2023</span>
-                <h4 class="timeline-title">Graduação em Física</h4>
-                <p class="timeline-institution">USP</p>
-                <p class="timeline-text">
-                    Forte base analítica complementada com projetos de extensão e divulgação científica.
-                </p>
-            </div>
-
-        </div>
-
-        <!-- Certificações -->
-        <div class="cert-card mt-12">
-            <h4 class="cert-card-title">
-                <i class="fa-solid fa-certificate text-accentAlt mr-2"></i> Certificações em Destaque
-            </h4>
-            <ul class="cert-list">
-                <li>Aspire Leaders Program</li>
-                <li>AI &amp; PLN (O.P. Jindal Global University)</li>
-                <li>Neural Networks (IFUSP)</li>
-                <li>Introdução ao Big Data (FIA)</li>
-                <li>Agile &amp; Design Thinking (Univ. of Virginia)</li>
-                <li>Azure AI &amp; Fundamentos de Deep Learning</li>
-            </ul>
-        </div>
         </div>
     </section>
 

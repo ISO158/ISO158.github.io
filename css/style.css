@@ -695,6 +695,7 @@
                 border-color 0.2s ease;
     cursor: default;
 }
+
 .tech-pill i {
     font-size: 0.85rem;
 }
@@ -1376,4 +1377,56 @@ body.modal-open {
     border-radius: 0.5rem;
     border: 1px solid #DADCE0;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================================
+   26. POSTER DESTAQUE (TRAJETÓRIA)
+   ============================================================ */
+
+.poster-card {
+    background-color: #FFFFFF;
+    border: 1px solid #DADCE0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+    margin-top: 1rem; /* Alinha visualmente no mobile */
+}
+
+@media (min-width: 768px) {
+    .poster-card {
+        margin-top: 0;
+        position: sticky;
+        top: 100px; /* Mantém a imagem visível enquanto o usuário desce a timeline */
+    }
+}
+
+.poster-card:hover {
+    border-color: #C2C3BD;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.poster-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    background-color: #F5F5F5;
+}
+
+.poster-img:hover {
+    opacity: 0.9;
+}
+
+.poster-caption {
+    padding: 1rem 1.25rem;
+    background-color: #F5F5F5;
+    color: #5F6368;
+    font-size: 0.8rem;
+    font-style: italic;
+    border-top: 1px solid #DADCE0;
+    text-align: center;
+    line-height: 1.5;
 }
